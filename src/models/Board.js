@@ -21,9 +21,12 @@ export default class Board {
       const newList = new List(defaultListTitles[i])
       const tasks = []
       for (let j = 0; j < 3; j++) {
+        if (i === 1) {
+          continue
+        }
         const newTask = new TaskModel(
           i + '-' + j,
-          'task title goes here',
+          `task title goes here`,
           ['planning', 'spike'],
           'this is the description',
         )

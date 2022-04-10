@@ -122,11 +122,8 @@
 }
 
 .board-column {
-  border: rgb(255, 241, 241) 1px solid;
-  margin: 10px;
-  /* border-radius: 15px; */
-  display: grid;
-  grid-template-rows: 7% repeat(5, 1fr);
+  /* border: rgb(255, 241, 241) 1px solid; */
+  height: 100%;
 }
 
 .board-column-title {
@@ -158,9 +155,6 @@
 .task:hover {
   border: rgb(23, 23, 23) 1px solid;
   cursor: grab;
-}
-.board-column:-webkit-scrollbar {
-
 }
 
 .task-tags {
