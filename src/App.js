@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import PageNavigation from './components/PageNavigation';
+import FilterBar from './components/FilterBar';
 import PageTitle from './components/PageTitle';
 import Sidebar from './components/Sidebar';
 import ProjectBoard from './components/ProjectBoard';
@@ -11,7 +11,7 @@ function App() {
       <Sidebar />
       <Navbar />
       <PageTitle />
-      <PageNavigation />
+      <FilterBar />
       <ProjectBoard />
     </div>
   );
