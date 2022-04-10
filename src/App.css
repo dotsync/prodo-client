@@ -159,6 +159,9 @@
   border: rgb(23, 23, 23) 1px solid;
   cursor: grab;
 }
+.board-column:-webkit-scrollbar {
+
+}
 
 .task-tags {
   display: flex;
@@ -173,6 +176,6 @@
   padding: 5px;
 }
 .task-tag:hover {
-  color: rgb(45, 85, 134);
+  color: rgb(88, 137, 124);
   cursor: pointer;
 }
