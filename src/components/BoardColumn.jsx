@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Task from './Task'
 import { useDrop } from 'react-dnd'
 
-export default function BoardColumn({ name, tasks }) {
+export default function BoardColumn({ name, columnTasks }) {
+  const [tasks, setTasks] = useState(columnTasks)
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     // The type (or types) to accept - strings or symbols
     accept: 'BOX',
-    drop: () => {
-      console.log('dropped')
+    drop: (item) => {
+      console.log('drop item', item)
+      addTaskToColumn(item.taskId)
     },
     // Props to collect
     collect: (monitor) => ({
@@ -15,6 +17,16 @@ export default function BoardColumn({ name, tasks }) {
       canDrop: monitor.canDrop(),
     }),
   }))
+
+  const addTaskToColumn = (id) => {
+    console.log(columnTasks)
+    console.log(id)
+    const newTask = tasks.filter((t)=> {return id === t.taskId})
+    console.log('tasks state', tasks)
+
+    setTasks([...newTask])
+  }
+
   return (
     <div
       ref={drop}

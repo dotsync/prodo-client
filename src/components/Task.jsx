@@ -1,10 +1,15 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
 
+// perhaps a column can be passed into the item object
+
+
+
 export default function Task({ title, description, tags, taskId }) {
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
     // "type" is required. It is used by the "accept" specification of drop targets.
     type: 'BOX',
+    item: {taskId: taskId},
     // The collect function utilizes a "monitor" instance (see the Overview for what this is)
     // to pull important pieces of state from the DnD system.
     collect: (monitor) => ({

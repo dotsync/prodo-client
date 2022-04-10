@@ -18,7 +18,7 @@ export default function ProjectBoard({ board }) {
     <div className="project-board">
       <div className="board">
         {columns.map((c) => {
-          return <BoardColumn tasks={c.tasks} name={c.title} />
+          return <BoardColumn columnTasks={c.tasks} name={c.title}/>
         })}
       </div>
     </div>
