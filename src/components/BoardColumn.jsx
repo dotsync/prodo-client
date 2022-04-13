@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Task from './Task'
 import { useDrop } from 'react-dnd'
 
@@ -8,15 +8,17 @@ export default function BoardColumn({ title, colIdx, columns, setColumns, tasks 
     () => ({
       accept: 'task',
       drop: (item) => {
-        console.log('item.task', item)
 
         // prevents placing onto self
         if (item.currentColIdx === colIdx) return
         // make updated list of tasks for the departing column
         const oldTasks = columns[item.currentColIdx]['tasks']
+        console.log('oldTasks', oldTasks)
         const updatedOldTasks = oldTasks.filter((task) => {
-          return task.id != item.id
+          console.log('task.id', task.id)
+          return task.id !== item.id
         })
+        console.log('updatedOldTasks', updatedOldTasks)
         const newColumns = [...columns]
         // remove task from old column
         newColumns[item.currentColIdx]['tasks'] = updatedOldTasks
@@ -24,7 +26,7 @@ export default function BoardColumn({ title, colIdx, columns, setColumns, tasks 
         newColumns[colIdx]['tasks'].push(item.task)
         // update state
         // console.log('newColumns', newColumns)
-        setColumns([...newColumns])
+        setColumns(newColumns)
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
@@ -35,12 +37,8 @@ export default function BoardColumn({ title, colIdx, columns, setColumns, tasks 
   )
 
   return (
-    <div
-      ref={drop}
-      role={'Dustbin'}
-      // style={{ border: isOver ? 'black 1px dotted' : '0px' }}
-    >
-      <div className="board-column" style={{ border: isOver ? 'black 1px dotted' : '0px' }}>
+
+      <div ref={drop} className="board-column" style={{ border: isOver ? 'black 1px dotted' : '0px' }}>
         <div className="board-column-title">
           <h3>{title}</h3>
           <span className="material-icons board-column-title-add-circle">
@@ -48,9 +46,9 @@ export default function BoardColumn({ title, colIdx, columns, setColumns, tasks 
           </span>
         </div>
         {tasks.map((t, taskIdx) => {
-          console.log(t)
           return (
             <Task
+            key={t.id}
               taskIdx={taskIdx}
               title={t.title}
               colIdx={colIdx}
@@ -62,6 +60,5 @@ export default function BoardColumn({ title, colIdx, columns, setColumns, tasks 
         })}
         {canDrop ? 'Release to drop' : 'Drag a box here'}
       </div>
-    </div>
   )
 }

@@ -41,8 +41,8 @@ export default function ProjectBoard() {
     <div className="project-board">
       <div className="board">
         {columns.map((c, colIdx) => {
-          console.log('c', c)
           return <BoardColumn
+          key={colIdx}
           title={c.title}
           colIdx={colIdx}
           columns={columns}
