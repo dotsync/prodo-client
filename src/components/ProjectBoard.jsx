@@ -1,24 +1,54 @@
 import React, { useState } from 'react'
 import BoardColumn from './BoardColumn'
-import { useDrop } from 'react-dnd'
 
-export default function ProjectBoard({ board }) {
-  const [columns, setColumns] = useState([...board.lists])
-  // const [{ canDrop, isOver }, drop] = useDrop(() => ({
-  //   // The type (or types) to accept - strings or symbols
-  //   accept: 'BOX',
-  //   drop: ()=> {console.log('dropped')},
-  //   // Props to collect
-  //   collect: (monitor) => ({
-  //     isOver: monitor.isOver(),
-  //     canDrop: monitor.canDrop()
-  //   })
-  // }))
+const MOCKCOLUMNS = [
+  {
+    title: 'a',
+    id: 1,
+    tasks: [{
+      title: 'fix delete multiple tasks bug',
+      id: 1
+    }],
+  },
+  {
+    title: 'b',
+    id: 2,
+    tasks: [{
+      title: 'design backend',
+      id: 2
+    }],
+  },
+  {
+    title: 'c',
+    id: 3,
+    tasks: [],
+  },
+  {
+    title: 'c',
+    id: 4,
+    tasks: [],
+  },
+  {
+    title: 'd',
+    id: 5,
+    tasks: [],
+  },
+]
+
+export default function ProjectBoard() {
+  const [columns, setColumns] = useState([...MOCKCOLUMNS])
   return (
     <div className="project-board">
       <div className="board">
-        {columns.map((c) => {
-          return <BoardColumn columnTasks={c.tasks} name={c.title}/>
+        {columns.map((c, colIdx) => {
+          console.log('c', c)
+          return <BoardColumn
+          title={c.title}
+          colIdx={colIdx}
+          columns={columns}
+          tasks={c.tasks}
+          setColumns={setColumns}
+        />
         })}
       </div>
     </div>
